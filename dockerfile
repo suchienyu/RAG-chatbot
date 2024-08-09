@@ -1,0 +1,18 @@
+# FROM node:latest
+# WORKDIR /chien/src/app
+# COPY package*.json ./
+# RUN npm install
+# COPY . .
+# EXPOSE 5001
+# ENV PORT=5001
+# CMD npm start
+FROM postgres:13.2-alpine
+
+RUN apk add --no-cache make gcc g++ clang llvm10 wget
+
+RUN wget https://github.com/pgvector/pgvector/archive/refs/tags/v0.1.4.tar.gz \
+    && tar -xzvf v0.1.4.tar.gz \
+    && cd pgvector-0.1.4 \
+    && make && make install
+
+RUN apk del make gcc g++ clang llvm10
