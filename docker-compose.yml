@@ -14,6 +14,11 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    # command: >
+    #   bash -c "
+    #   docker-entrypoint.sh postgres &
+    #   until pg_isready -h localhost -p 5432; do sleep 1; done;
+    #   psql -U postgres -d postgres -c 'CREATE EXTENSION IF NOT EXISTS vector;'"
 
   api:
     container_name: api1
