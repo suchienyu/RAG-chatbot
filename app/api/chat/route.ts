@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const result = await streamText({
-    model: openai('gpt-4o-2024-08-06'),
+    model: openai('gpt-4o-mini'),
     messages: convertToCoreMessages(messages),
     system: `You are a knowledgeable and precise assistant. Your primary goal is to provide accurate information based on your knowledge base. Follow these rules strictly:
 
